@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -15,10 +16,10 @@ app.use(cookieParser());
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
+            return callback(null, true);
         }
+
+        return callback(new Error("Not allowed by CORS"));
     },
     credentials: true
 }));
